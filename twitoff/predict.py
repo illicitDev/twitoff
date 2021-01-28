@@ -17,7 +17,7 @@ def predict_user(user0_name, user1_name, hypo_tweet):
     vects = np.vstack([user0_vects, user1_vects])
 
     # collection of labels same length as vects
-    labels = np.concatenate([np.zeros(len(user0.tweets)). np.ones(len(user1.tweets))])
+    labels = np.concatenate([np.zeros(len(user0.tweets)), np.ones(len(user1.tweets))])
 
     # train regression model 
     log_reg = LogisticRegression().fit(vects,labels)

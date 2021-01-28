@@ -16,7 +16,7 @@ def create_app():
     
     @app.route('/')
     def root():
-        return render_template('base.html', title="Home")
+        return render_template('base.html', title="Home", users=User.query.all())
 
     @app.route('/user', methods=['POST'])
     @app.route('/user<name>', methods=['GET'])
@@ -33,7 +33,7 @@ def create_app():
             message = f'Error adding {name}: {e}'
             tweets = []
         
-        return render_template('user.html', title=name, message=message)
+        return render_template('user.html', title=name, message=message, tweets=tweets)
 
     @app.route('/compare', methods=['POST'])
     def compare():
@@ -58,13 +58,8 @@ def create_app():
     def update():
         query = User.query.all()
 
-        names = [str(user.name) for user in query]
-
-        DB.drop_all()
-        DB.create_all()
-
-        for name in names:
-            add_or_update_user(name)
+        for user in query:
+            add_or_update_user(user.name)
 
         return render_template('base.html', title="Home")
 
