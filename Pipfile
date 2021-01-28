@@ -14,6 +14,7 @@ sklearn = "*"
 numpy = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+cython = "*"
 
 [dev-packages]
 
