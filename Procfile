@@ -1,1 +1,1 @@
-web gunicorn --chdir twitoff __init__:APP
+web: gunicorn twitoff:APP -t 120
